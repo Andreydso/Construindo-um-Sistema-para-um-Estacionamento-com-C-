@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace DesafioFundamentos.Models
 {
@@ -18,6 +19,7 @@ namespace DesafioFundamentos.Models
 
         public void AdicionarVeiculo()
         {
+            Console.OutputEncoding = Encoding.UTF8; // Define a codificação de saída como UTF-8
             Console.WriteLine("Digite a placa do veículo para estacionar:");
             string placa = Console.ReadLine();
             veiculos.Add(placa);
@@ -26,6 +28,7 @@ namespace DesafioFundamentos.Models
 
         public void RemoverVeiculo()
         {
+            Console.OutputEncoding = Encoding.UTF8; // Define a codificação de saída como UTF-8
             Console.WriteLine("Digite a placa do veículo para remover:");
             string placa = Console.ReadLine();
 
@@ -47,6 +50,7 @@ namespace DesafioFundamentos.Models
 
         public void ListarVeiculos()
         {
+            Console.OutputEncoding = Encoding.UTF8; // Define a codificação de saída como UTF-8
             if (veiculos.Any())
             {
                 Console.WriteLine("Os veículos estacionados são:");
@@ -58,6 +62,46 @@ namespace DesafioFundamentos.Models
             else
             {
                 Console.WriteLine("Não há veículos estacionados.");
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Estacionamento estacionamento = new Estacionamento(5, 2); // Exemplo de preço inicial e por hora
+            bool sair = false;
+
+            while (!sair)
+            {
+                Console.OutputEncoding = Encoding.UTF8; // Define a codificação de saída como UTF-8
+                Console.WriteLine("Escolha uma opção:");
+                Console.WriteLine("1. Adicionar veículo");
+                Console.WriteLine("2. Remover veículo");
+                Console.WriteLine("3. Listar veículos");
+                Console.WriteLine("4. Sair");
+
+                int opcao = Convert.ToInt32(Console.ReadLine());
+
+                switch (opcao)
+                {
+                    case 1:
+                        estacionamento.AdicionarVeiculo();
+                        break;
+                    case 2:
+                        estacionamento.RemoverVeiculo();
+                        break;
+                    case 3:
+                        estacionamento.ListarVeiculos();
+                        break;
+                    case 4:
+                        sair = true;
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida. Tente novamente.");
+                        break;
+                }
             }
         }
     }
